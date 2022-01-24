@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "Transaction";
+}
+<!-- Page Heading -->
+
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Transaction</h6>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>No.Transaction</label>
+                                        <input type="text" id="idtransaction" class="form-control" placeholder="Auto Generate" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Role Login</label>
+                                        <input type="text" id="edtrole" class="form-control" placeholder="Kasir" disabled>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Tanggal</label>
+                                        <input type="text" id="edtdate" class="form-control" placeholder="DateNow" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Name Login</label>
+                                        <input type="text" id="edtnamekasir" class="form-control" placeholder="Kristianto" disabled>
+                                        <input type="hidden" id="edtid" class="form-control" placeholder="ID" disabled>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Choose Goods</label>
+                                        <select class="form-control" id="inputgoods" onchange="changeGoods(this)">
+                                            <option> Choose Goods</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        <input type="hidden" class="form-control" id="edtidgoods" placeholder="id" disabled>
+                                        <input type="hidden" class="form-control" id="edtnamegoods" placeholder="Name" disabled>
+                                        <input type="number" min="0" id="edtqtygoods" class="form-control" placeholder="0">
+                                    </div>
+
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <input type="text" id="edtpricegoods" class="form-control" placeholder="0" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Stok</label>
+                                        <input type="text" id="edtstokgoods" class="form-control" placeholder="0" disabled>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" id="btnaddtmp" class="btn btn-primary float-right">
+                            <i class="fas fa-fw fa-cart-plus"></i> Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label>Type Payment</label>
+                                    <select class="form-control" id="payment_type">
+                                        <option value="0"> Choose Type Payment</option>
+                                        <option value="cash"> Cash</option>
+                                        <option value="midtrans"> Midtrans Payment</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Jumlah Uang :</label>
+                                    <input type="number" min="0" id="edtuangcust" class="form-control" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <button type="button" onclick="SendRequest()" class="btn btn-info btn-block w-100 h-100 ">
+                                    Process Transaction
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="jumbotron p-2">
+                            <h4>Total : </h4>
+                            <h1 id="subtotaltxt" class="display-4 text-right">Rp. 0</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive tablediv">
+                            <table id="listtemp" class="table table-hover table-bordered" width="100%" cellspacing="0">
+                                <thead class="thead-light font-weight-bold text-primary">
+                                    <tr class="">
+                                        <td>ID Goods</td>
+                                        <td>Name Goods</td>
+                                        <td>Price Goods</td>
+                                        <td>Quantity</td>
+                                        <td>Sub Total</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="listtempbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-ssIn_mmDb9FU-60X"></script>
+    <script>
+        var idLogin = "@ViewData["idLogin"]";
+    </script>
+    <script src="~/js/Transaction.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+}

@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</div>
+
+<div class="row">
+
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Total Cashier</h6>
+            </div>
+            <div class="card-body">
+                <h3 id="cashiercount">0 Data</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Total Supplier</h6>
+            </div>
+            <div class="card-body">
+                <h3 id="suppliercount">0 Data</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Total Items</h6>
+            </div>
+            <div class="card-body">
+                <h3 id="itemcount">0 Data</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Chart Payment Type</h6>
+            </div>
+            <div class="card-body">
+                <div id="gender_payment"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Chart Status Request Stok</h6>
+            </div>
+            <div class="card-body">
+                <div id="status_request"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Chart Stok</h6>
+            </div>
+            <div class="card-body">
+                <div id="chart1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/js/Dashboard.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+}
+
